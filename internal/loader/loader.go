@@ -30,7 +30,6 @@ func (c CSVLoaderAdapter) Load(words []model.WordPair, skipHeader bool, multiple
 	}
 	csvwriter := csv.NewWriter(csvFile)
 
-	//wordsString := c.transformToString(words, skipHeader)
 	wordsString, err := c.stringFormatter.TransformToString(words, skipHeader)
 	if err != nil {
 		return fmt.Errorf("transforming to string %w", err)
@@ -43,19 +42,6 @@ func (c CSVLoaderAdapter) Load(words []model.WordPair, skipHeader bool, multiple
 
 	return nil
 }
-
-//func (c CSVLoaderAdapter) transformToString(words []model.WordPair, skipHeader bool) [][]string {
-//	var result [][]string
-//	if !skipHeader {
-//		result = [][]string{
-//			{"Question", "Answer"},
-//		}
-//	}
-//	for _, word := range words {
-//		result = append(result, []string{word.Word, word.Translation})
-//	}
-//	return result
-//}
 
 func (c CSVLoaderAdapter) Open() ([]model.WordPair, error) {
 	f, err := os.Open(c.path)

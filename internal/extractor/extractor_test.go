@@ -1,13 +1,15 @@
 package extractor
 
 import (
+	"os"
+	"testing"
+
 	"github.com/stretchr/testify/require"
 	"github.com/wouove/learning-words/internal/model"
-	"testing"
 )
 
 func TestSqlLiteExtractorAdapter_Extract(t *testing.T) {
-	path := "/Users/wouteroverbeek/KoboReader.sqlite"
+	path := os.Getenv("INPUT_PATH")
 	extractor, err := NewSqlLiteExtractorAdapter(path)
 	require.NoError(t, err)
 

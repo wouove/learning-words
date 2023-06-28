@@ -1,6 +1,7 @@
 package loader
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -8,7 +9,7 @@ import (
 )
 
 func TestCSVLoaderAdapter_Load(t *testing.T) {
-	path := "/Users/wouteroverbeek/personal_repositories/learning-words/output/"
+	path := os.Getenv("OUTPUT_PATH")
 	fileName := "test.csv"
 	loader := NewCSVLoaderAdapter(path + fileName)
 
@@ -25,8 +26,7 @@ func TestCSVLoaderAdapter_Load(t *testing.T) {
 }
 
 func TestAnkiWordsLoaderAdapter_Load(t *testing.T) {
-	path := "/Users/wouteroverbeek/personal_repositories/learning-words/output/anki-format"
-	//fileName := "test.apkg"
+	path := os.Getenv("OUTPUT_PATH")
 	loader := NewAnkiWordsLoaderAdapter(path)
 
 	input := []model.WordPair{
